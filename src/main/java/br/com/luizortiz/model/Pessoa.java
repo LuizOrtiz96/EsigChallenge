@@ -8,9 +8,9 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "pessoa")
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 public class Pessoa {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -46,4 +46,5 @@ public class Pessoa {
     @ManyToOne
     @JoinColumn(name = "cargo_id")
     private Cargo cargo;
+
 }

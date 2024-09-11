@@ -8,9 +8,9 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "cargo")
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 public class Cargo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

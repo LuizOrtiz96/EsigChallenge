@@ -12,9 +12,9 @@ import java.math.BigDecimal;
 
 @Entity
 @Table(name = "pessoa_salario_consolidado")
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 public class PessoaSalarioConsolidado {
     @Id
     @Column(name = "pessoa_id")

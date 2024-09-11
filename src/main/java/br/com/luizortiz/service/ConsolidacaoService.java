@@ -10,14 +10,15 @@ import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
-@AllArgsConstructor
-@NoArgsConstructor
 public class ConsolidacaoService {
     @Autowired
     private PessoaRepository pessoaRepository;
@@ -35,27 +36,28 @@ public class ConsolidacaoService {
         pessoaRepository.deleteAll();
     }
 
+    @Transactional
     public List<PessoaSalarioConsolidado> consolidarSalarios() {
         //refreshDados();
+        List<PessoaSalarioConsolidado> dados = new ArrayList<>();
         BigDecimal salario = BigDecimal.ZERO;
-        dados = new ArrayList<>();
-
-        PessoaSalarioConsolidado psc = new PessoaSalarioConsolidado();
         List<Pessoa> pessoas = pessoaRepository.findAll();
+
         for (Pessoa pessoa : pessoas) {
-            Cargo cargo = cargoRepository.findByPessoaId(pessoa.getId());
+            PessoaSalarioConsolidado psc = new PessoaSalarioConsolidado();
+            psc.setPessoaId(pessoa.getId());
+            psc.setNomePessoa(pessoa.getNome());
+            psc.setNomeCargo(cargoRepository.findByPessoaId(pessoa.getId()).getNome());
+
             for (Vencimentos vencimento : vencimentosRepository.findByPessoaId(pessoa.getId())) {
                 if ("CREDITO".equals(vencimento.getTipo())) {
                     salario = salario.add(vencimento.getValor());
                 } else if ("DEBITO".equals(vencimento.getTipo())) {
                     salario = salario.subtract(vencimento.getValor());
                 }
-                psc.setPessoaId(pessoa.getId());
-                psc.setNomePessoa(pessoa.getNome());
-                psc.setNomeCargo(cargo.getNome());
+            }
                 psc.setSalario(salario);
                 dados.add(psc);
-            }
         }
         return dados;
     }

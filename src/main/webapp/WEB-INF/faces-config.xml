@@ -6,7 +6,7 @@
               version="2.3">
     <managed-bean>
         <managed-bean-name>consolidacaoBean</managed-bean-name>
-        <managed-bean-class>br.com.luizortiz.bean.ConsolidacaoBean</managed-bean-class>
+        <managed-bean-class>br.com.luizortiz.controller.ConsolidacaoBean</managed-bean-class>
         <managed-bean-scope>view</managed-bean-scope>
     </managed-bean>
 </faces-config>

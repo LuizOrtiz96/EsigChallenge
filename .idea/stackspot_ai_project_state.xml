@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectStateService">
+    <option name="data">
+      <map>
+        <entry key="luizortiz2010@hotmail.com">
+          <value>
+            <ProjectStateData>
+              <option name="conversationId" value="01J7HJ67XS85SNGX6HC1JAV43Z" />
+              <option name="indexedFiles">
+                <map>
+                  <entry key="$USER_HOME$/AppData/Local/JetBrains/IdeaIC2023.2/httpFileSystem/catalog.json" value="10135" />
+                  <entry key="$PROJECT_DIR$/src/main/java/br/com/luizortiz/controller/ConsolidacaoBean.java" value="22105" />
+                  <entry key="$PROJECT_DIR$/src/main/java/br/com/luizortiz/repository/CargoRepository.java" value="934" />
+                  <entry key="$PROJECT_DIR$/src/main/java/br/com/luizortiz/repository/CargoVencimentoRepository.java" value="1012" />
+                  <entry key="$PROJECT_DIR$/src/main/java/br/com/luizortiz/repository/PessoaRepository.java" value="1030" />
+                  <entry key="$PROJECT_DIR$/src/main/java/br/com/luizortiz/repository/PessoaSalarioConsolidadoRepository.java" value="1101" />
+                  <entry key="$PROJECT_DIR$/src/main/java/br/com/luizortiz/repository/VencimentosRepository.java" value="1334" />
+                  <entry key="$PROJECT_DIR$/src/main/java/br/com/luizortiz/service/ConsolidacaoService.java" value="53888" />
+                  <entry key="$PROJECT_DIR$/src/main/webapp/WEB-INF/applicationContext.xml" value="53829" />
+                  <entry key="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" value="10051" />
+                </map>
+              </option>
+              <option name="projectId" value="01J7FFHZC2KQT0959Q8FY56H6G" />
+            </ProjectStateData>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
