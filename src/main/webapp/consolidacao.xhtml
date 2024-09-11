@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Consolidação de Salários</title>
+</h:head>
+<h:body>
+    <h:form>
+        <h:commandButton value="Calcular/Recalcular salários" action="#{consolidacaoBean.consolidarSalarios}" />
+        <h:dataTable value="#{consolidacaoBean.resultados}" var="resultado">
+            <h:column>
+                <f:facet name="header">Pessoa ID</f:facet>
+                #{resultado.pessoaId}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Pessoa</f:facet>
+                #{resultado.nomePessoa}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Cargo</f:facet>
+                #{resultado.nomeCargo}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Salário</f:facet>
+                <h:outputText value="#{resultado.salario}">
+                    <f:convertNumber type="currency" currencySymbol="R$" locale="pt_BR" />
+                </h:outputText>
+            </h:column>
+        </h:dataTable>
+    </h:form>
+</h:body>
+</html>
