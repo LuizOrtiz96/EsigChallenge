@@ -8,7 +8,10 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CargoRepository extends JpaRepository<Cargo, Integer> {
+    Cargo findByPessoaId(int pessoaId);
 
     @Query("SELECT c FROM Cargo c WHERE c.id = (SELECT cv.cargo.id FROM CargoVencimentos cv WHERE cv.pessoa.id = :pessoaId)")
     Cargo findByPessoaId(@Param("pessoaId") Integer pessoaId);
 }
+
+

@@ -5,14 +5,11 @@ import br.com.luizortiz.repository.CargoRepository;
 import br.com.luizortiz.repository.CargoVencimentoRepository;
 import br.com.luizortiz.repository.PessoaRepository;
 import br.com.luizortiz.repository.VencimentosRepository;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
+import javax.enterprise.context.ApplicationScoped;
 import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -28,19 +25,16 @@ public class ConsolidacaoService {
     private CargoVencimentoRepository cargoVencimentoRepository;
     @Autowired
     private VencimentosRepository vencimentosRepository;
-    @Autowired
-    private PessoaSalarioConsolidado pessoaSalarioConsolidado;
-    private List<PessoaSalarioConsolidado> dados;
 
-    private void refreshDados() {
-        pessoaRepository.deleteAll();
+    @Transactional
+    public List<Pessoa> listar() {
+        return pessoaRepository.findAll();
     }
 
     @Transactional
     public List<PessoaSalarioConsolidado> consolidarSalarios() {
         //refreshDados();
         List<PessoaSalarioConsolidado> dados = new ArrayList<>();
-        BigDecimal salario = BigDecimal.ZERO;
         List<Pessoa> pessoas = pessoaRepository.findAll();
 
         for (Pessoa pessoa : pessoas) {
@@ -49,6 +43,8 @@ public class ConsolidacaoService {
             psc.setNomePessoa(pessoa.getNome());
             psc.setNomeCargo(cargoRepository.findByPessoaId(pessoa.getId()).getNome());
 
+            BigDecimal salario = BigDecimal.ZERO;
+
             for (Vencimentos vencimento : vencimentosRepository.findByPessoaId(pessoa.getId())) {
                 if ("CREDITO".equals(vencimento.getTipo())) {
                     salario = salario.add(vencimento.getValor());
@@ -56,8 +52,8 @@ public class ConsolidacaoService {
                     salario = salario.subtract(vencimento.getValor());
                 }
             }
-                psc.setSalario(salario);
-                dados.add(psc);
+            psc.setSalario(salario);
+            dados.add(psc);
         }
         return dados;
     }

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 @Repository
 public interface VencimentosRepository extends JpaRepository<Vencimentos, Integer> {
-
+    List<Vencimentos> findByPessoaId(int pessoaId);
     @Query("SELECT v FROM Vencimentos v WHERE v.pessoa.id = :pessoaId")
     List<Vencimentos> findByPessoaId(@Param("pessoaId") Integer pessoaId);
 }
