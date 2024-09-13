@@ -1,17 +1,23 @@
 package br.com.luizortiz.repository;
 
 import br.com.luizortiz.model.Cargo;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
-import org.springframework.stereotype.Repository;
+import br.com.luizortiz.model.Vencimentos;
 
-@Repository
-public interface CargoRepository extends JpaRepository<Cargo, Integer> {
-    Cargo findByPessoaId(int pessoaId);
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+import java.util.List;
 
-    @Query("SELECT c FROM Cargo c WHERE c.id = (SELECT cv.cargo.id FROM CargoVencimentos cv WHERE cv.pessoa.id = :pessoaId)")
-    Cargo findByPessoaId(@Param("pessoaId") Integer pessoaId);
+@Stateless
+public class CargoRepository {
+    @PersistenceContext
+    private EntityManager em;
+
+    public Cargo findByPessoaId(Integer id) {
+        // O método find faz a busca pelo ID
+        return em.find(Cargo.class, id);
+    }
 }
 
 

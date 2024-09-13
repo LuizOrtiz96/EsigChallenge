@@ -3,20 +3,28 @@ package br.com.luizortiz.controller;
 import br.com.luizortiz.model.Pessoa;
 import br.com.luizortiz.model.PessoaSalarioConsolidado;
 import br.com.luizortiz.service.ConsolidacaoService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+
+import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
 
-@Component
+@Named
 @ViewScoped
 public class ConsolidacaoBean implements Serializable {
 
-    @Autowired
+    @EJB
     private ConsolidacaoService consolidacaoService;
 
     private List<PessoaSalarioConsolidado> resultados;
+
+    @PostConstruct
+    public void init() {
+        consolidarSalarios();
+    }
 
     public void consolidarSalarios() {
         resultados = consolidacaoService.consolidarSalarios();

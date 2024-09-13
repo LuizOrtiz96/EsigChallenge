@@ -1,11 +1,22 @@
 package br.com.luizortiz.repository;
 
-import br.com.luizortiz.model.Cargo;
 import br.com.luizortiz.model.Pessoa;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
-@Repository
-public interface PessoaRepository extends JpaRepository<Pessoa, Integer> {
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+import java.util.List;
+
+@Stateless
+public class PessoaRepository {
+    @PersistenceContext
+    private EntityManager em;
+
+    public List<Pessoa> listAll(){
+        String sql = "select e from Endereco e ";
+        TypedQuery<Pessoa> query = em.createQuery(sql, Pessoa.class);
+        return query.getResultList();
+    }
 }
 

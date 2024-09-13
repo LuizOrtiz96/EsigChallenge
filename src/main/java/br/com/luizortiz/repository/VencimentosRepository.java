@@ -1,16 +1,21 @@
 package br.com.luizortiz.repository;
 
 import br.com.luizortiz.model.Cargo;
+import br.com.luizortiz.model.Pessoa;
 import br.com.luizortiz.model.Vencimentos;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
-import org.springframework.stereotype.Repository;
-
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import java.util.List;
-@Repository
-public interface VencimentosRepository extends JpaRepository<Vencimentos, Integer> {
-    List<Vencimentos> findByPessoaId(int pessoaId);
-    @Query("SELECT v FROM Vencimentos v WHERE v.pessoa.id = :pessoaId")
-    List<Vencimentos> findByPessoaId(@Param("pessoaId") Integer pessoaId);
+@Stateless
+public class VencimentosRepository {
+    @PersistenceContext
+    private EntityManager em;
+    public List<Vencimentos> findByPessoaId(Integer pessoaId) {
+        TypedQuery<Vencimentos> query = em.createQuery(
+                "SELECT v FROM Vencimentos v WHERE v.pessoa.id = :pessoaId", Vencimentos.class);
+        query.setParameter("pessoaId", pessoaId);
+        return query.getResultList();
+    }
 }

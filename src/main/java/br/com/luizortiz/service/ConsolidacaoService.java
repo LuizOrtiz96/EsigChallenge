@@ -5,37 +5,32 @@ import br.com.luizortiz.repository.CargoRepository;
 import br.com.luizortiz.repository.CargoVencimentoRepository;
 import br.com.luizortiz.repository.PessoaRepository;
 import br.com.luizortiz.repository.VencimentosRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.transaction.Transactional;
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-@Service
+@Stateless
 public class ConsolidacaoService {
-    @Autowired
+    @EJB
     private PessoaRepository pessoaRepository;
-    @Autowired
+    @EJB
     private CargoRepository cargoRepository;
-    @Autowired
+    @EJB
     private CargoVencimentoRepository cargoVencimentoRepository;
-    @Autowired
+    @EJB
     private VencimentosRepository vencimentosRepository;
 
-    @Transactional
     public List<Pessoa> listar() {
-        return pessoaRepository.findAll();
+        return pessoaRepository.listAll();
     }
 
-    @Transactional
     public List<PessoaSalarioConsolidado> consolidarSalarios() {
         //refreshDados();
         List<PessoaSalarioConsolidado> dados = new ArrayList<>();
-        List<Pessoa> pessoas = pessoaRepository.findAll();
+        List<Pessoa> pessoas = pessoaRepository.listAll();
 
         for (Pessoa pessoa : pessoas) {
             PessoaSalarioConsolidado psc = new PessoaSalarioConsolidado();
