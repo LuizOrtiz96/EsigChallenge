@@ -10,9 +10,13 @@
               <option name="indexedFiles">
                 <map>
                   <entry key="$USER_HOME$/AppData/Local/JetBrains/IdeaIC2023.2/httpFileSystem/catalog.json" value="19318" />
+                  <entry key="$PROJECT_DIR$/.idea/stackspot_ai_project_state.xml" value="67580" />
+                  <entry key="$PROJECT_DIR$/.smarttomcat/gestaoFuncionarios/conf/context.xml" value="0" />
+                  <entry key="$PROJECT_DIR$/.smarttomcat/gestaoFuncionarios/conf/web.xml" value="0" />
+                  <entry key="$PROJECT_DIR$/README.md" value="0" />
                   <entry key="$PROJECT_DIR$/pom.xml" value="59113" />
                   <entry key="$PROJECT_DIR$/src/main/java/MyRepositoryTest.java" value="197901" />
-                  <entry key="$PROJECT_DIR$/src/main/java/br/com/luizortiz/controller/ConsolidacaoBean.java" value="63248" />
+                  <entry key="$PROJECT_DIR$/src/main/java/br/com/luizortiz/controller/ConsolidacaoBean.java" value="67579" />
                   <entry key="$PROJECT_DIR$/src/main/java/br/com/luizortiz/model/Cargo.java" value="0" />
                   <entry key="$PROJECT_DIR$/src/main/java/br/com/luizortiz/model/Pessoa.java" value="0" />
                   <entry key="$PROJECT_DIR$/src/main/java/br/com/luizortiz/repository/CargoRepository.java" value="42424" />
